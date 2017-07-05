@@ -5,23 +5,35 @@ const cli = require('commander'),
     tasm2kickass = require('./TasmToKickAss.js');
 
 cli.version('0.0.0')
-    .usage('<infile> <outfile>')
+    .usage('[infile]')
     .parse(process.argv);
 
-const inFile = cli.args[0],
-    outFile = cli.args[1];
+const inFile = cli.args[0];
 
+function convertToStdout(data) {
+    console.log(tasm2kickass.convert(data));
+}
+
+// no input file supplied -> read from stdin
 if (inFile === undefined) {
-    console.error('Input file missing.');
-    cli.help();
+
+    var data = "",
+        stdin = process.openStdin();
+
+    stdin.on('data', function(chunk) {
+        data += chunk;
+    });
+
+    stdin.on('end', function() {
+        convertToStdout(data);
+    });
+
+}
+// read from supplied input file
+else {
+    fs.readFile(inFile, "utf8", function (error, data) {
+        console.log(convertToStdout(data));
+    });
 }
 
-if (outFile === undefined) {
-    console.error('Output file missing.');
-    cli.help();
-}
-
-fs.readFile(inFile, "utf8", function (error, data) {
-    console.log(ConvertTasmToKickass(data));
-});
 
