@@ -11,7 +11,7 @@ cli.version('0.0.0')
 const inFile = cli.args[0];
 
 function convertToStdout(data) {
-    console.log(tasm2kickass.convert(data));
+    process.stdout.write(tasm2kickass.convert(data));
 }
 
 // no input file supplied -> read from stdin
@@ -32,7 +32,7 @@ if (inFile === undefined) {
 // read from supplied input file
 else {
     fs.readFile(inFile, "utf8", function (error, data) {
-        console.log(convertToStdout(data));
+        convertToStdout(data);
     });
 }
 

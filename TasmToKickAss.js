@@ -1,5 +1,5 @@
 module.exports = {
-    convert: 
+    convert:
 
     function (tasmSource) {
         var kickAssSource = tasmSource;
@@ -10,8 +10,6 @@ module.exports = {
         var PcReplacement = "$1.pc$3";
         var CommentReplacement = "//";
         var RorRolReplacement = "$1";
-        var StartParReplacement = "$2[";
-        var EndParReplacement = "$2]";
         var OffsParReplacement = "$1 //TODO: Replace .pc + .offs with .pseudopc block";
         var XorReplacement = "$1^";
 
