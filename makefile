@@ -7,9 +7,10 @@ test: image
 image: Dockerfile tmpview
 	docker build -t $(IMAGE) .
 
-push: build
-	docker tag:$(IMAGE):latest $(IMAGE):$(VERSION)
+push: image
+	docker tag $(IMAGE):latest $(IMAGE):$(VERSION)
 	docker push $(IMAGE):$(VERSION)
+	docker push $(IMAGE):latest
 
 debug: image
 	docker run -it --rm -v "$$PWD":/workspace --entrypoint /bin/bash $(IMAGE):latest

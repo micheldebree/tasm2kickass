@@ -24,9 +24,3 @@ This solution uses two steps to produce the output:
 
 - Runs the [TMPview](http://style64.org/release/tmpview-v1.3.1-style) tool on the input to produce TMPx assmbler code.
 - Runs an adaptation of the javascript found on [http://tasmtokickass.insoft.se](http://tasmtokickass.insoft.se) to convert the code to Kick Assembler code.
-
-## Developers
-
-### Build Docker image
-
-    docker build -t micheldebree/tasm2kickass:1.0.0 .
